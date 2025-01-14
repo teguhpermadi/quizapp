@@ -21,6 +21,7 @@ class QuestionFactory extends Factory
         return [
             'question' => fake()->realText(),
             'question_type' => fake()->randomElement(QuestionTypeEnum::class),
+            'image' => fake()->imageUrl(),
             'score' => fake()->numberBetween(1,10),
             'tag' => fake()->word(),
             'timer' => fake()->numberBetween(1000,3000),

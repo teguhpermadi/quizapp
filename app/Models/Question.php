@@ -17,6 +17,7 @@ class Question extends Model
     protected $fillable = [
         'question',
         'question_type',
+        'image',
         'score',
         'tag',
         'timer',
