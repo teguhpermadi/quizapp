@@ -1,0 +1,8 @@
+User::all()
+Role::get()
+User::get()
+User::get()
+User::with('role')->get()
+User::role('teacher')->get()
+Question::get()
+App\Models\Question::get()
