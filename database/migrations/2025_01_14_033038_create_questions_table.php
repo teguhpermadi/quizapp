@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('question');
             $table->string('question_type');
             $table->string('image')->nullable();
+            $table->text('explanation')->nullable();
             $table->integer('score')->default(1);
             $table->json('tag')->nullable();
             $table->time('timer')->default(0);

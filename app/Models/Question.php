@@ -18,6 +18,7 @@ class Question extends Model
         'question',
         'question_type',
         'image',
+        'explanation',
         'score',
         'tag',
         'timer',
