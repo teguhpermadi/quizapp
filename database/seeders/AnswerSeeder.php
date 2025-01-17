@@ -31,7 +31,7 @@ class AnswerSeeder extends Seeder
                 ->count(3)
                 ->state([
                     'is_correct' => false
-                ]), 'answers')
+                ]))
             ->count(5)
             ->create();
 
@@ -52,7 +52,7 @@ class AnswerSeeder extends Seeder
                 ->count(2)
                 ->state([
                     'is_correct' => false
-                ]), 'answers')
+                ]))
             ->count(5)
             ->create();
 
@@ -64,14 +64,14 @@ class AnswerSeeder extends Seeder
                     'answer_text' => 'True',
                     'is_correct' => true
                 ])
-                ->count(1), 'answers')
+                ->count(1))
             ->has(Answer::factory()
                 ->trueFalse()
                 ->state([
                     'answer_text' => 'False',
                     'is_correct' => false
                 ])
-                ->count(1), 'answers')
+                ->count(1))
             ->count(5)
             ->create();
 
@@ -79,7 +79,7 @@ class AnswerSeeder extends Seeder
         Question::factory()
             ->has(Answer::factory()
                 ->matching()
-                ->count(4), 'answers')
+                ->count(4))
             ->count(5)
             ->create();
 
@@ -87,7 +87,7 @@ class AnswerSeeder extends Seeder
         Question::factory()
             ->has(Answer::factory()
                 ->ordering()
-                ->count(4), 'answers')
+                ->count(4))
             ->count(5)
             ->create();
     }
