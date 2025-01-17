@@ -19,3 +19,8 @@ Question::get()->random(rand(1, 5))->pluck('id')->toArray()
 Question::get()->random(rand(1, 5))->pluck('id')->toArray()
 Question::get()->random(rand(1, 5))->pluck('id')->toArray()
 Paragraph::with('question')->get()
+User::role('teacher')->get()->random()->id,
+User::role('teacher')->get()->random()->id
+User::role('teacher')->get()->random()->id
+User::role('teacher')->get()->random()->id
+QuestionBank::get()

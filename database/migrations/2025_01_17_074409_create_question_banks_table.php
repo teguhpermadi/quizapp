@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('question_banks', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->text('question');
-            $table->string('question_type');
+            $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('title');
             $table->string('image')->nullable();
-            $table->text('explanation')->nullable();
-            $table->integer('score')->default(1);
+            $table->text('description')->nullable();
             $table->string('tag')->nullable();
-            $table->time('timer')->default(0);
-            $table->string('level')->nullable();
-            $table->foreignUlid('user_id')->constrained()->cascadeOnDelete();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('question_banks');
     }
 };
