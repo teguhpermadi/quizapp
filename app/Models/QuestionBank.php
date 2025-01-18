@@ -26,4 +26,9 @@ class QuestionBank extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function question()
+    {
+        return $this->belongsToMany(Question::class, 'question_bank_question');
+    }
 }

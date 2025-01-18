@@ -1,26 +1,6 @@
-$paragraph = Paragraph::first();
-$questions = $paragraph->question()->attach(Question::first()->id);
-Paragraph::question()->get()
-Paragraph::question->get()
-Paragraph::get()
-Paragraph::wiht('question')->get()
-Paragraph::with('question')->get()
-Question::with('paragraph')->get()
-Paragraph::with('question')->get()
-Question::get()->random()->id
-Question::get()->random()->id
-Question::get()->pluck('id')
-Question::get()->pluck('id')->rand(1,5)
-Question::get()->pluck('id')->rand(1,5)
-Question::get()->random(rand(1, 5))->pluck('id')
-Question::get()->random(rand(1, 5))->pluck('id')->toArray()
-Question::get()->random(rand(1, 5))->pluck('id')->toArray()
-Question::get()->random(rand(1, 5))->pluck('id')->toArray()
-Question::get()->random(rand(1, 5))->pluck('id')->toArray()
-Question::get()->random(rand(1, 5))->pluck('id')->toArray()
-Paragraph::with('question')->get()
-User::role('teacher')->get()->random()->id,
-User::role('teacher')->get()->random()->id
-User::role('teacher')->get()->random()->id
-User::role('teacher')->get()->random()->id
 QuestionBank::get()
+QuestionBank::with('question')->get()
+QuestionBank::has('question')->with('question')->get()
+QuestionBank::has('question')->with('question.answer')->get()
+QuestionBank::has('question')->with('question')->get()
+QuestionBank::has('question')->withCount('question')->get()
