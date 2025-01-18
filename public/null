@@ -1,6 +1,121 @@
+$questionBank = QuestionBank::factory()
+  ->has(Question::factory()
+		->state([
+		  'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+		])
+		->has(Answer::factory()
+			  ->multipleChoice()
+			  ->count(1)
+			  ->state([
+				'is_correct' => true
+			  ]))
+		->has(Answer::factory()
+			  ->multipleChoice()
+			  ->count(3)
+			  ->state([
+				'is_correct' => false
+			  ]))
+		->count(5))
+  ->count(1)
+  ->create();
+
+$exam = Exam::factory(1)->state([
+  'question_bank_id' => $questionBank->id,
+])->create();
+$questionBank = QuestionBank::factory()
+  ->has(Question::factory()
+		->state([
+		  'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+		])
+		->has(Answer::factory()
+			  ->multipleChoice()
+			  ->count(1)
+			  ->state([
+				'is_correct' => true
+			  ]))
+		->has(Answer::factory()
+			  ->multipleChoice()
+			  ->count(3)
+			  ->state([
+				'is_correct' => false
+			  ]))
+		->count(5))
+  ->count(1)
+  ->create();
+
+$exam = Exam::factory(1)->state([
+  'question_bank_id' => $questionBank,
+])->create();
 QuestionBank::get()
-QuestionBank::with('question')->get()
-QuestionBank::has('question')->with('question')->get()
-QuestionBank::has('question')->with('question.answer')->get()
-QuestionBank::has('question')->with('question')->get()
-QuestionBank::has('question')->withCount('question')->get()
+$questionBank = QuestionBank::factory()
+            ->has(Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+                ])
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(1)
+                    ->state([
+                        'is_correct' => true
+                    ]))
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(3)
+                    ->state([
+                        'is_correct' => false
+                    ]))
+                ->count(5))
+            ->count(1)
+            ->create();
+$questionBank = QuestionBank::factory()
+            ->has(Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+                ])
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(1)
+                    ->state([
+                        'is_correct' => true
+                    ]))
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(3)
+                    ->state([
+                        'is_correct' => false
+                    ]))
+                ->count(5))
+            ->create();
+Exam::get()
+Exam::with('question')->get();
+Exam::with('questionBank')->get();
+Exam::with('questionBank.question')->get();
+Exam::with('questionBank.question.answer')->get();
+Exam::with('questionBank.question.answer')->count();
+Exam::with('questionBank.question.answer')->lastes();
+Exam::with('questionBank.question.answer')->latest();
+Exam::with('questionBank.question.answer')->latest();
+Exam::with('questionBank.question.answer')->latest()->get();
+Exam::with('questionBank.question.answer')->first()->get();
+Exam::with('questionBank.question.answer')->find('01jhvs6w006w95j5dbbhjcq3yb');
+Question::with('paragraph')->get()
+Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+                ])
+                ->has(Paragraph::factory()->count(1))
+  ->make()
+Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+                ])
+                ->has(Paragraph::factory()->count(1))
+  ->create()
+Question::find('01jhvseybqbnjxes3jydzrsrgn')
+Question::find('01jhvseybqbnjxes3jydzrsrgn')->paragraph()
+Question::with('paragraph')->find('01jhvseybqbnjxes3jydzrsrgn')
+Exam::get()
+Exam::find('01jhvsgfpa75s1axc0smrmn8qa')
+Exam::with('questionBank')->find('01jhvsgfpa75s1axc0smrmn8qa')
+Exam::with('questionBank.question')->find('01jhvsgfpa75s1axc0smrmn8qa')
+Exam::with('questionBank.question.paragraph')->find('01jhvsgfpa75s1axc0smrmn8qa')

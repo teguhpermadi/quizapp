@@ -17,10 +17,11 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             // QuestionSeeder::class,
-            AnswerSeeder::class,
-            ParagraphSeeder::class,
-            QuestionBankSeeder::class,
-            QuestionBankQuestionSeeder::class,
+            // AnswerSeeder::class,
+            // ParagraphSeeder::class,
+            // QuestionBankSeeder::class,
+            // QuestionBankQuestionSeeder::class,
+            ExamSeeder::class,
         ]);
     }
 }
