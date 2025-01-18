@@ -11,4 +11,5 @@ enum QuestionTypeEnum: string
     case TRUE_FALSE = 'true false';
     case MATCHING = 'matching';
     case CALCULATE = 'calculate';
+    case ORDERING = 'ordering';
 }

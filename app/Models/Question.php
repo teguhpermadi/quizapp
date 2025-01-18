@@ -40,4 +40,9 @@ class Question extends Model
     {
         return $this->belongsToMany(Paragraph::class, 'paragraph_question');
     }
+
+    public function studentAnswers()
+    {
+        return $this->hasMany(StudentAnswer::class);
+    }
 }

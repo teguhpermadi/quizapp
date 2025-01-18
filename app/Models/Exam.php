@@ -30,4 +30,9 @@ class Exam extends Model
     {
         return $this->belongsTo(QuestionBank::class);
     }
+
+    public function studentAnswers()
+    {
+        return $this->hasMany(StudentAnswer::class);
+    }
 }

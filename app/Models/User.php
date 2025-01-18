@@ -16,7 +16,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
     use HasUlids;
     use HasRoles;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,5 +49,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function studentAnswers()
+    {
+        return $this->hasMany(StudentAnswer::class, 'student_id');
     }
 }
