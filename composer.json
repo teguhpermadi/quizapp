@@ -28,6 +28,7 @@
         "nunomaduro/collision": "^8.1",
         "pestphp/pest": "^3.7",
         "pestphp/pest-plugin-laravel": "^3.0",
+        "smknstd/fakerphp-picsum-images": "^1.0",
         "spatie/laravel-web-tinker": "^1.10"
     },
     "autoload": {

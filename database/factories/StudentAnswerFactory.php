@@ -28,12 +28,13 @@ class StudentAnswerFactory extends Factory
             'answer_id' => Answer::factory(),
             'student_id' => User::factory(),
             'text_answer' => $this->faker->paragraph(),
-            'matching_answer' => [
-                ['key' => 'A', 'value' => '1'],
-                ['key' => 'B', 'value' => '2']
-            ], // Contoh jawaban matching
-            'ordering_answer' => [1, 2, 3, 4], // Contoh urutan jawaban ordering
-            'is_correct' => $this->faker->boolean(),
+            'matching_answer' => null,
+            'ordering_answer' => null,
+            'image' => null,
+            'video' => null,
+            'audio' => null,
+            'is_correct' => null,
+            'score' => 0,
         ];
     }
 }

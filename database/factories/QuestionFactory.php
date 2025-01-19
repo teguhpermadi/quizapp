@@ -18,14 +18,17 @@ class QuestionFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+
         return [
             'question' => fake()->realText(),
             'question_type' => fake()->randomElement(QuestionTypeEnum::class),
-            'image' => fake()->imageUrl(),
+            'image' => $faker->imageUrl(),
             'explanation' => fake()->realText(),
-            'score' => fake()->numberBetween(1,10),
+            'score' => fake()->numberBetween(1, 10),
             'tag' => fake()->word(),
-            'timer' => fake()->numberBetween(1000,3000),
+            'timer' => fake()->numberBetween(1000, 3000),
             'level' => fake()->randomElement(['easy', 'medium', 'hard']),
             'user_id' => User::role('teacher')->get()->random()->id,
         ];
