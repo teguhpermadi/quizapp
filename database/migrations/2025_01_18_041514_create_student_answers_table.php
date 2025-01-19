@@ -16,11 +16,15 @@ return new class extends Migration
             $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete();
             $table->foreignUlid('question_bank_id')->constrained('question_banks')->cascadeOnDelete();
             $table->foreignUlid('question_id')->constrained('questions')->cascadeOnDelete();
-            $table->foreignUlid('answer_id')->nullable()->constrained('answers')->nullOnDelete();
             $table->foreignUlid('student_id')->constrained('users')->cascadeOnDelete(); // Relasi ke tabel users
-            $table->text('text_answer')->nullable(); // Jawaban teks untuk essay atau short answer
+            $table->foreignUlid('answer_id')->nullable()->constrained('answers')->nullOnDelete(); // untuk multiple choice, true-false
+            $table->json('answer_ids')->nullable();
+            $table->text('text_answer')->nullable(); // untuk essay atau short answer
             $table->json('matching_answer')->nullable(); // Untuk matching
             $table->json('ordering_answer')->nullable(); // Untuk ordering
+            $table->string('image')->nullable(); // siswa dapat upload image
+            $table->string('video')->nullable(); // siswa dapat upload video
+            $table->string('audio')->nullable(); // siswa dapat upload audio
             $table->boolean('is_correct')->nullable(); // Apakah jawaban benar
             $table->softDeletes();
             $table->timestamps();

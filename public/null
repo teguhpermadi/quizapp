@@ -1,21 +1,26 @@
-$exam = Exam::first();
-$student = User::role('student')->get();
-$exam = Exam::first();
-        $student = User::role('student')->get();
+Exam::with('questionBank.question')->get()
+Exam::with('questionBank.question.answer')->get()
+Exam::with('questionBank.question.answer')->get()
+Exam::with('questionBank.question.answer')->get()
+Exam::with('questionBank.question.answer')->get()
+Answer::get()->random()
+Answer::get()->random()
+Answer::get()->random(2)
+Exam::with('questionBank.question.answer')->get()
 
-        $questions = $exam->questionBank->question;
-$exam = Exam::first();
-$student = User::role('student')->get();
+  Question::first();
 
-$questions = $exam->questionBank->question;
-$exam->question_bank_id,
-$exam = Exam::first();
-$student = User::role('student')->get();
+Question::with('answer')->first();
 
-$questions = $exam->questionBank->question;
-$exam->question_bank_id;
-use App\Models\StudentAnswer;
-use App\Models\StudentAnswer;
-StudentAnswer::count()
-use App\Models\StudentAnswer;
+$q = Question::first();
+$q->answer
+
+$q = Question::first();
+$q->answer->random(2)
+
+$q = Question::first();
+$q->answer->random(2)->pluck('id')
 StudentAnswer::get()
+StudentAnswer::with('answer')->get()
+StudentAnswer::with('answers')->get()
+StudentAnswer::with('answers')->get()

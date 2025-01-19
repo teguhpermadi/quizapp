@@ -30,14 +30,17 @@ class StudentAnswerSeeder extends Seeder
                     'question_bank_id' => $exam->question_bank_id,
                     'question_id' => $question->id,
                     'student_id' => $student->id,
-                    'answer_id' => $question->question_type === QuestionTypeEnum::MULTIPLE_CHOICE
+                    'answer_id' => $question->question_type === QuestionTypeEnum::MULTIPLE_CHOICE->value
                         ? $question->answer->random()->id
                         : null,
-                    'text_answer' => $question->question_type === QuestionTypeEnum::ESSAY ? 'Example essay answer' : null,
-                    'matching_answer' => $question->question_type === QuestionTypeEnum::MATCHING
+                    'answer_ids' => $question->question_type === QuestionTypeEnum::MULTIPLE_ANSWER->value
+                        ? $question->answer->random(2)->pluck('id')
+                        : null,
+                    'text_answer' => $question->question_type === QuestionTypeEnum::ESSAY->value ? 'Example essay answer' : null,
+                    'matching_answer' => $question->question_type === QuestionTypeEnum::MATCHING->value
                         ? [['key' => 'A', 'value' => '1'], ['key' => 'B', 'value' => '2']]
                         : null,
-                    'ordering_answer' => $question->question_type === QuestionTypeEnum::ORDERING
+                    'ordering_answer' => $question->question_type === QuestionTypeEnum::ORDERING->value
                         ? [1, 3, 2, 4]
                         : null,
                     'is_correct' => null, // Evaluasi setelah submit
