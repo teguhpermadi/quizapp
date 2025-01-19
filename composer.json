@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
+        "opcodesio/log-viewer": "^3.14",
         "spatie/laravel-permission": "^6.10",
         "staudenmeir/eloquent-json-relations": "^1.13"
     },
