@@ -31,6 +31,7 @@ class StudentAnswer extends Model
         'video',
         'audio',
         'is_correct',
+        'score',
     ];
 
     protected $casts = [

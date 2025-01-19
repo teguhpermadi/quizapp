@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('image')->nullable(); // siswa dapat upload image
             $table->string('video')->nullable(); // siswa dapat upload video
             $table->string('audio')->nullable(); // siswa dapat upload audio
-            $table->boolean('is_correct')->nullable(); // Apakah jawaban benar
+            $table->string('is_correct')->nullable(); // Apakah jawaban benar
+            $table->float('score')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

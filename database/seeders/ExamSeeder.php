@@ -20,25 +20,25 @@ class ExamSeeder extends Seeder
     {
         $questionBank = QuestionBank::factory()
             // multipleChoice
-            // ->has(Question::factory()
-            //     ->state([
-            //         'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
-            //     ])
-            //     ->has(Paragraph::factory()->count(1))
-            //     ->has(Answer::factory()
-            //         ->multipleChoice()
-            //         ->count(1)
-            //         ->state([
-            //             'answer_text' => 'key answer',
-            //             'is_correct' => true
-            //         ]))
-            //     ->has(Answer::factory()
-            //         ->multipleChoice()
-            //         ->count(3)
-            //         ->state([
-            //             'is_correct' => false
-            //         ]))
-            //     ->count(5))
+            ->has(Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::MULTIPLE_CHOICE,
+                ])
+                ->has(Paragraph::factory()->count(1))
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(1)
+                    ->state([
+                        'answer_text' => 'key answer',
+                        'is_correct' => true
+                    ]))
+                ->has(Answer::factory()
+                    ->multipleChoice()
+                    ->count(3)
+                    ->state([
+                        'is_correct' => false
+                    ]))
+                ->count(5))
 
             // multiple answer
             ->has(Question::factory()

@@ -10,6 +10,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Enums\QuestionTypeEnum;
+use App\Enums\CorrectStatusEnum;
 use Illuminate\Support\Facades\Log;
 
 class CorrectExamJob implements ShouldQueue
@@ -25,86 +26,119 @@ class CorrectExamJob implements ShouldQueue
 
     public function handle()
     {
+        Log::info("CorrectExamJob started for Exam ID: {$this->examId}");
+
         // Ambil semua jawaban siswa untuk ujian ini
         $studentAnswers = StudentAnswer::where('exam_id', $this->examId)->get();
 
         foreach ($studentAnswers as $studentAnswer) {
             $question = $studentAnswer->question;
+            $score = 0; // Default score
+            $isCorrect = CorrectStatusEnum::FALSE->value; // Default correctness
 
             switch ($question->question_type) {
                 case QuestionTypeEnum::MULTIPLE_CHOICE->value:
-                    $isCorrect = $this->evaluateMultipleChoice($studentAnswer);
+                    [$score, $isCorrect] = $this->evaluateMultipleChoice($studentAnswer);
                     break;
 
                 case QuestionTypeEnum::MULTIPLE_ANSWER->value:
-                    $isCorrect = $this->evaluateMultipleAnswer($studentAnswer);
+                    [$score, $isCorrect] = $this->evaluateMultipleAnswer($studentAnswer, $question->score);
                     break;
 
                 case QuestionTypeEnum::TRUE_FALSE->value:
-                    $isCorrect = Answer::where('id', $studentAnswer->answer_id)
-                        ->value('is_correct') ?? false;
+                    [$score, $isCorrect] = $this->evaluateTrueFalse($studentAnswer, $question->score);
                     break;
 
                 case QuestionTypeEnum::SHORT_ANSWER->value:
                 case QuestionTypeEnum::ESSAY->value:
-                    $isCorrect = $this->evaluateTextAnswer($studentAnswer->text_answer, $question->correct_answer);
+                    [$score, $isCorrect] = $this->evaluateTextAnswer($studentAnswer->text_answer, $question->correct_answer, $question->score);
                     break;
 
                 case QuestionTypeEnum::MATCHING->value:
-                    $isCorrect = $this->evaluateMatchingAnswer($studentAnswer->matching_answer, $question);
+                    [$score, $isCorrect] = $this->evaluateMatchingAnswer($studentAnswer->matching_answer, $question);
                     break;
 
                 case QuestionTypeEnum::ORDERING->value:
-                    $isCorrect = $this->evaluateOrderingAnswer($studentAnswer->ordering_answer, $question);
+                    [$score, $isCorrect] = $this->evaluateOrderingAnswer($studentAnswer->ordering_answer, $question);
                     break;
 
                 default:
-                    $isCorrect = false;
+                    $score = 0;
+                    $isCorrect = CorrectStatusEnum::FALSE->value;
                     break;
             }
 
-            Log::info("Correcting student answer", ['studentAnswerId' => $studentAnswer->id, 'isCorrect' => $isCorrect]);
-
-            // Update status koreksi
+            // Update skor dan status koreksi
+            $studentAnswer->score = $score;
             $studentAnswer->is_correct = $isCorrect;
             $studentAnswer->save();
+
+            // Log hasil koreksi untuk setiap siswa
+            Log::info("Student Answer Corrected", [
+                'student_id' => $studentAnswer->student_id,
+                'question_id' => $studentAnswer->question_id,
+                'is_correct' => $isCorrect,
+                'score' => $score,
+            ]);
         }
+
+        Log::info("CorrectExamJob completed for Exam ID: {$this->examId}");
     }
 
     private function evaluateMultipleChoice($studentAnswer)
     {
-        // Ambil jawaban yang benar untuk pertanyaan
         $correctAnswerId = Answer::where('question_id', $studentAnswer->question_id)
             ->where('is_correct', true)
             ->value('id');
 
-        // Cocokkan jawaban siswa dengan jawaban yang benar
-        return $studentAnswer->answer_id == $correctAnswerId;
+        $isCorrect = $studentAnswer->answer_id == $correctAnswerId ? CorrectStatusEnum::TRUE->value : CorrectStatusEnum::FALSE->value;
+        $score = $isCorrect === CorrectStatusEnum::TRUE->value ? $studentAnswer->question->score : 0;
+
+        return [$score, $isCorrect];
     }
 
-    private function evaluateMultipleAnswer($studentAnswer)
+    private function evaluateMultipleAnswer($studentAnswer, $totalScore)
     {
-        // Ambil semua jawaban yang benar untuk pertanyaan
         $correctAnswers = Answer::where('question_id', $studentAnswer->question_id)
             ->where('is_correct', true)
             ->pluck('id')
             ->toArray();
 
-        // Ambil jawaban siswa (sebagai array)
-        $studentAnswers = $studentAnswer->answer_ids ? json_decode($studentAnswer->answer_ids, true) : [];
+        $studentAnswers = $studentAnswer->answer_ids ?? [];
 
-        // Periksa apakah semua jawaban siswa ada di jawaban yang benar
-        $isSubset = empty(array_diff($studentAnswers, $correctAnswers));
+        // Hitung skor berdasarkan jawaban yang benar
+        $correctCount = count(array_intersect($studentAnswers, $correctAnswers));
+        $totalCorrect = count($correctAnswers);
 
-        // Periksa apakah siswa hanya memilih jawaban yang benar
-        $noExtraAnswers = empty(array_diff($correctAnswers, $studentAnswers));
+        $score = ($correctCount / $totalCorrect) * $totalScore;
 
-        return $isSubset && $noExtraAnswers;
+        if ($correctCount === $totalCorrect) {
+            $isCorrect = CorrectStatusEnum::TRUE->value;
+        } elseif ($correctCount > 0) {
+            $isCorrect = CorrectStatusEnum::PARTIAL->value;
+        } else {
+            $isCorrect = CorrectStatusEnum::FALSE->value;
+        }
+
+        return [$score, $isCorrect];
     }
 
-    private function evaluateTextAnswer($studentAnswer, $correctAnswer)
+    private function evaluateTrueFalse($studentAnswer, $totalScore)
     {
-        return strtolower(trim($studentAnswer)) === strtolower(trim($correctAnswer));
+        $isCorrect = Answer::where('id', $studentAnswer->answer_id)
+            ->value('is_correct') ? CorrectStatusEnum::TRUE->value : CorrectStatusEnum::FALSE->value;
+
+        $score = $isCorrect === CorrectStatusEnum::TRUE->value ? $totalScore : 0;
+
+        return [$score, $isCorrect];
+    }
+
+    private function evaluateTextAnswer($studentAnswer, $correctAnswer, $totalScore)
+    {
+        $isCorrect = strtolower(trim($studentAnswer)) === strtolower(trim($correctAnswer)) ? CorrectStatusEnum::TRUE->value : CorrectStatusEnum::FALSE->value;
+        $score = $isCorrect === CorrectStatusEnum::TRUE->value ? $totalScore : 0;
+
+        return [$score, $isCorrect];
     }
 
     private function evaluateMatchingAnswer($studentMatching, $question)
@@ -113,7 +147,25 @@ class CorrectExamJob implements ShouldQueue
             ->pluck('matching_pair', 'id')
             ->toArray();
 
-        return collect($studentMatching)->diffAssoc($correctMatching)->isEmpty();
+        $correctCount = 0;
+        foreach ($studentMatching as $key => $value) {
+            if (isset($correctMatching[$key]) && $correctMatching[$key] == $value) {
+                $correctCount++;
+            }
+        }
+
+        $totalCorrect = count($correctMatching);
+        $score = ($correctCount / $totalCorrect) * $question->score;
+
+        if ($correctCount === $totalCorrect) {
+            $isCorrect = CorrectStatusEnum::TRUE->value;
+        } elseif ($correctCount > 0) {
+            $isCorrect = CorrectStatusEnum::PARTIAL->value;
+        } else {
+            $isCorrect = CorrectStatusEnum::FALSE->value;
+        }
+
+        return [$score, $isCorrect];
     }
 
     private function evaluateOrderingAnswer($studentOrdering, $question)
@@ -123,6 +175,24 @@ class CorrectExamJob implements ShouldQueue
             ->pluck('id')
             ->toArray();
 
-        return $studentOrdering === $correctOrder;
+        $correctCount = 0;
+        foreach ($studentOrdering as $index => $answerId) {
+            if (isset($correctOrder[$index]) && $correctOrder[$index] == $answerId) {
+                $correctCount++;
+            }
+        }
+
+        $totalCorrect = count($correctOrder);
+        $score = ($correctCount / $totalCorrect) * $question->score;
+
+        if ($correctCount === $totalCorrect) {
+            $isCorrect = CorrectStatusEnum::TRUE->value;
+        } elseif ($correctCount > 0) {
+            $isCorrect = CorrectStatusEnum::PARTIAL->value;
+        } else {
+            $isCorrect = CorrectStatusEnum::FALSE->value;
+        }
+
+        return [$score, $isCorrect];
     }
 }

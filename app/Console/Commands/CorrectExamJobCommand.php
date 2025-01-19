@@ -28,12 +28,7 @@ class CorrectExamJobCommand extends Command
      */
     public function handle()
     {
-        $examId = $this->argument('exam_id');
-
-        // Prompt for exam_id if not provided
-        if (!$examId) {
-            $examId = $this->ask('Please provide the Exam ID');
-        }
+        $examId = $this->argument('exam_id') ?: $this->ask('Please provide the Exam ID');
 
         // Dispatch the CorrectExamJob
         CorrectExamJob::dispatch($examId);
