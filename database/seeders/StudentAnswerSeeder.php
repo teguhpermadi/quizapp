@@ -30,7 +30,7 @@ class StudentAnswerSeeder extends Seeder
                     'question_bank_id' => $exam->question_bank_id,
                     'question_id' => $question->id,
                     'student_id' => $student->id,
-                    'answer_id' => $question->question_type === QuestionTypeEnum::MULTIPLE_CHOICE->value
+                    'answer_id' => $question->question_type === QuestionTypeEnum::MULTIPLE_CHOICE->value || QuestionTypeEnum::TRUE_FALSE
                         ? $question->answer->random()->id
                         : null,
                     'answer_ids' => $question->question_type === QuestionTypeEnum::MULTIPLE_ANSWER->value
@@ -44,6 +44,7 @@ class StudentAnswerSeeder extends Seeder
                         ? [1, 3, 2, 4]
                         : null,
                     'is_correct' => null, // Evaluasi setelah submit
+                    'score' => 0,
                 ]);
             }
         }
