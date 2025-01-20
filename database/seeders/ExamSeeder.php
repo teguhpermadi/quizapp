@@ -81,31 +81,34 @@ class ExamSeeder extends Seeder
             //     ->count(5))
 
             // matching
-            ->has(Question::factory()
-                ->state([
-                    'question_type' => QuestionTypeEnum::MATCHING,
-                ])
-                // setiap generate answer harus selalu 2 pasang
-                ->has(Answer::factory()
-                    ->state([
-                        'metadata' => ['type' => 'domain'],
-                    ])
-                    ->matching()
-                    ->count(2))
-                ->has(Answer::factory()
-                    ->state([
-                        'metadata' => ['type' => 'kodomain'],
-                    ])
-                    ->matching()
-                    ->count(2))
-                ->count(1))
+            // ->has(Question::factory()
+            //     ->state([
+            //         'question_type' => QuestionTypeEnum::MATCHING,
+            //     ])
+            //     // setiap generate answer harus selalu 2 pasang
+            //     ->has(Answer::factory()
+            //         ->state([
+            //             'metadata' => ['type' => 'domain'],
+            //         ])
+            //         ->matching()
+            //         ->count(2))
+            //     ->has(Answer::factory()
+            //         ->state([
+            //             'metadata' => ['type' => 'kodomain'],
+            //         ])
+            //         ->matching()
+            //         ->count(2))
+            //     ->count(1))
 
             // ordering
-            // ->has(Question::factory()
-            //     ->has(Answer::factory()
-            //         ->ordering()
-            //         ->count(4))
-            //     ->count(5))
+            ->has(Question::factory()
+                ->state([
+                    'question_type' => QuestionTypeEnum::ORDERING,
+                ])
+                ->has(Answer::factory()
+                    ->ordering()
+                    ->count(4))
+                ->count(1))
             ->create();
 
         $exam = Exam::factory(1)->state([

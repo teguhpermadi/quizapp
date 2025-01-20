@@ -71,6 +71,7 @@ class AnswerFactory extends Factory
     public function ordering()
     {
         return $this->state(fn() => [
+            'is_correct' => true,
             'order_position' => fake()->randomDigitNotNull(),
         ]);
     }

@@ -68,6 +68,9 @@ class StudentAnswerSeeder extends Seeder
                         break;
 
                     case QuestionTypeEnum::ORDERING->value:
+                        $answers = $question->answer->pluck('id')->toArray();
+                        shuffle($answers);
+                        $ordering_answer = $answers;
                         break;
 
                     default:
