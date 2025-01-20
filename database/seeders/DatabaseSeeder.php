@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             // QuestionBankSeeder::class,
             // QuestionBankQuestionSeeder::class,
             ExamSeeder::class,
+            ExamTokenSeeder::class,
             StudentAnswerSeeder::class,
         ]);
     }
