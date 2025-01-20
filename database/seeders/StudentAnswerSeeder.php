@@ -63,7 +63,7 @@ class StudentAnswerSeeder extends Seeder
                                 $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, // Benar atau salah
                             ];
                         });
-                        
+
                         $matching_answer = $studentMatchingAnswer;
                         break;
 
@@ -71,6 +71,10 @@ class StudentAnswerSeeder extends Seeder
                         $answers = $question->answer->pluck('id')->toArray();
                         shuffle($answers);
                         $ordering_answer = $answers;
+                        break;
+
+                    case QuestionTypeEnum::SHORT_ANSWER->value:
+                        $text_answer = fake()->word();
                         break;
 
                     default:

@@ -62,6 +62,10 @@ class CorrectExamJob implements ShouldQueue
                     [$score, $isCorrect] = $this->evaluateOrderingAnswer($studentAnswer->ordering_answer, $question);
                     break;
 
+                case QuestionTypeEnum::SHORT_ANSWER->value:
+                    [$score, $isCorrect] = $this->evaluateShortAnswer($studentAnswer->text_answer, $question);
+                    break;
+
                 default:
                     $score = 0;
                     $isCorrect = CorrectStatusEnum::FALSE->value;
@@ -202,6 +206,28 @@ class CorrectExamJob implements ShouldQueue
         } else {
             $isCorrect = CorrectStatusEnum::FALSE->value;
         }
+
+        return [$score, $isCorrect];
+    }
+
+    private function evaluateShortAnswer($studentAnswer, $question)
+    {
+        // Ambil semua jawaban yang benar untuk soal ini
+        $correctAnswers = Answer::where('question_id', $question->id)
+            ->pluck('answer_text')
+            ->map(fn($text) => strtolower(trim($text)))
+            ->toArray();
+
+        // Normalisasi jawaban siswa
+        $normalizedStudentAnswer = strtolower(trim($studentAnswer));
+
+        // Periksa apakah jawaban siswa ada dalam daftar jawaban benar
+        $isCorrect = in_array($normalizedStudentAnswer, $correctAnswers)
+            ? CorrectStatusEnum::TRUE->value
+            : CorrectStatusEnum::FALSE->value;
+
+        // Hitung skor
+        $score = $isCorrect === CorrectStatusEnum::TRUE->value ? $question->score : 0;
 
         return [$score, $isCorrect];
     }

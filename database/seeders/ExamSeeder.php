@@ -101,14 +101,26 @@ class ExamSeeder extends Seeder
             //     ->count(1))
 
             // ordering
+            // ->has(Question::factory()
+            //     ->state([
+            //         'question_type' => QuestionTypeEnum::ORDERING,
+            //     ])
+            //     ->has(Answer::factory()
+            //         ->ordering()
+            //         ->count(4))
+            //     ->count(1))
+
+            // short answer
             ->has(Question::factory()
                 ->state([
-                    'question_type' => QuestionTypeEnum::ORDERING,
+                    'question_type' => QuestionTypeEnum::SHORT_ANSWER,
                 ])
                 ->has(Answer::factory()
-                    ->ordering()
-                    ->count(4))
-                ->count(1))
+                    ->shortAnswer()
+                    ->count(3))
+                ->count(5))
+            
+                // create
             ->create();
 
         $exam = Exam::factory(1)->state([

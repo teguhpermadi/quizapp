@@ -32,3 +32,23 @@ Question::with('answer')->get();
 StudentAnswer::get()
 
 StudentAnswer::get()
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+fake()->colorName;
+Answer::gett()
+Answer::get()
+Question::with('answer')->get()
+Question::with('answer')->get()
+Question::with('answer')->get()
+StudentAnswer::get()
+StudentAnswer::get()

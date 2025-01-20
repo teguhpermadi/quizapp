@@ -19,11 +19,14 @@ class AnswerFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create();
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+
         return [
             'question_id' => null,
             'answer_text' => fake()->sentence(),
             'is_correct' => fake()->boolean(),
-            'image' => fake()->imageUrl(),
+            'image' => $faker->imageUrl(),
             'matching_pair' => null,
             'order_position' => null,
             'metadata' => null,
@@ -73,6 +76,13 @@ class AnswerFactory extends Factory
         return $this->state(fn() => [
             'is_correct' => true,
             'order_position' => fake()->randomDigitNotNull(),
+        ]);
+    }
+
+    public function shortAnswer()
+    {
+        return $this->state(fn() => [
+            'answer_text' => fake()->word(),
         ]);
     }
 }
