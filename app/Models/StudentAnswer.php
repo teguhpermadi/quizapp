@@ -18,6 +18,7 @@ class StudentAnswer extends Model
 
 
     protected $fillable = [
+        'attempt_id',
         'exam_id',
         'question_bank_id',
         'question_id',
@@ -39,6 +40,11 @@ class StudentAnswer extends Model
         'matching_answer' => 'array', // Cast JSON ke array
         'ordering_answer' => 'array', // Cast JSON ke array
     ];
+
+    public function attempt()
+    {
+        return $this->belongsTo(StudentAttempt::class, 'attempt_id');
+    }
 
     public function exam()
     {
