@@ -85,10 +85,20 @@ class ExamSeeder extends Seeder
                 ->state([
                     'question_type' => QuestionTypeEnum::MATCHING,
                 ])
+                // setiap generate answer harus selalu 2 pasang
                 ->has(Answer::factory()
+                    ->state([
+                        'metadata' => ['type' => 'domain'],
+                    ])
                     ->matching()
-                    ->count(4))
-                ->count(5))
+                    ->count(2))
+                ->has(Answer::factory()
+                    ->state([
+                        'metadata' => ['type' => 'kodomain'],
+                    ])
+                    ->matching()
+                    ->count(2))
+                ->count(1))
 
             // ordering
             // ->has(Question::factory()

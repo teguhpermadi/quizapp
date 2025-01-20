@@ -1,21 +1,506 @@
+Answer::get()
+Answer::where('metadata->type', 'domain')->get()
+Answer::where('metadata->type', 'domain')->get()
+Answer::where('metadata->type', 'domain')->get()
+Answer::where('metadata->type', 'domain')->get()
+Answer::where('metadata->type', 'domain')->get()
+Answer::where('metadata->type', 'domain')->get()->random()->id
+Answer::where('metadata->type', 'domain')->get()->random()->id
+Answer::where('metadata->type', 'domain')->get()->random()->id
+Answer::where('metadata->type', 'domain')->get()->random()->id
+$question = Question::get();
+$question = Question::get();
+$question->answer
+$question = Question::get();
+$question->answer;
+$question = Question::first();
+$question->answer;
+$question = Question::first();
+$question->answer->where('metadata->type', 'domain');
+$question = Question::first();
+$question->answer->where('metadata->type', 'domain')->get();
+$question = Question::first();
+$question->answer->where('metadata->type', 'domain');
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain');
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get();
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+$question = Question::first();
+$question->answer()->where('metadata->type', 'kodomain')->get()->random()->id;
+StudentAnswer::get()
+StudentAnswer::get()
 StudentAnswer::with('question')->get()
 StudentAnswer::with('question')->get()
 StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question')->get()
-StudentAnswer::with('question.answer')->get()
-StudentAnswer::with('question.answer')->get()
-StudentAnswer::with('question.answer')->get()
-StudentAnswer::with('question')->get()
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->count()
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->count()
+$question = Question::first();
+$question->answer()->where('metadata->type', 'domain')->count()
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  };
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  };
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }
+														  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $studentMatchingAnswer;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $domains;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $domains;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $domains;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $domains;
+$questions = Question::first();
+
+foreach($questions as $question){
+  
+  $domains = $question->answer()
+	->where('metadata->type', 'domain')
+	->pluck('id')
+	->toArray();
+
+  $kodomains = $question->answer()
+	->where('metadata->type', 'kodomain')
+	->pluck('id')
+	->toArray();
+
+  
+  $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+	return [
+	  $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, 
+	];});
+  }													  
+														  $domains;
 StudentAnswer::get()
 StudentAnswer::get()
 StudentAnswer::get()
-Question::get()
-Question::with('answer')->get()
-Question::with('answer')->get()
-Question::with('answer')->get()
-Question::with('answer')->get()

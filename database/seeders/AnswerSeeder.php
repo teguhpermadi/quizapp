@@ -78,7 +78,6 @@ class AnswerSeeder extends Seeder
         // matching
         Question::factory()
             ->has(Answer::factory()
-                ->matching()
                 ->count(4))
             ->count(5)
             ->create();

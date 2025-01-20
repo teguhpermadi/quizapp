@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('answer_text');
             $table->boolean('is_correct')->default(false);
             $table->string('image')->nullable();
-            $table->text('matching_pair')->nullable();
+            $table->string('matching_pair')->nullable();
             $table->integer('order_position')->nullable();
             $table->json('metadata')->nullable();
             $table->timestamps();

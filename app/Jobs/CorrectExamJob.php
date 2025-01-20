@@ -143,21 +143,31 @@ class CorrectExamJob implements ShouldQueue
 
     private function evaluateMatchingAnswer($studentMatching, $question)
     {
-        $correctMatching = Answer::where('question_id', $question->id)
+        // Ambil pasangan kunci jawaban dari kolom `metadata`
+        $domains = Answer::where('question_id', $question->id)
+            ->where('metadata->type', 'domain')
             ->pluck('matching_pair', 'id')
             ->toArray();
 
+        $kodomains = Answer::where('question_id', $question->id)
+            ->where('metadata->type', 'kodomain')
+            ->pluck('id')
+            ->toArray();
+
+        // Hitung jumlah pasangan yang benar
         $correctCount = 0;
         foreach ($studentMatching as $key => $value) {
-            if (isset($correctMatching[$key]) && $correctMatching[$key] == $value) {
+            if (isset($domains[$key]) && in_array($value, $kodomains) && $domains[$key] === $value) {
                 $correctCount++;
             }
         }
 
-        $totalCorrect = count($correctMatching);
-        $score = ($correctCount / $totalCorrect) * $question->score;
+        // Hitung total pasangan domain
+        $totalDomains = count($domains);
+        $score = ($correctCount / $totalDomains) * $question->score;
 
-        if ($correctCount === $totalCorrect) {
+        // Tentukan status koreksi
+        if ($correctCount === $totalDomains) {
             $isCorrect = CorrectStatusEnum::TRUE->value;
         } elseif ($correctCount > 0) {
             $isCorrect = CorrectStatusEnum::PARTIAL->value;

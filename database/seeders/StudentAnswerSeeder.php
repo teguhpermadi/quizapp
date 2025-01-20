@@ -25,24 +25,66 @@ class StudentAnswerSeeder extends Seeder
         foreach ($students as $student) {
             // setiap soal
             foreach ($questions as $question) {
+
+                $answer_id = null;
+                $answer_ids = null;
+                $text_answer = null;
+                $matching_answer = null;
+                $ordering_answer = null;
+
+                switch ($question->question_type) {
+                    case QuestionTypeEnum::MULTIPLE_CHOICE->value:
+                        $answer_id = $question->answer->random()->id;
+                        break;
+
+                    case QuestionTypeEnum::MULTIPLE_ANSWER->value:
+                        $answer_id = $question->answer->random()->id;
+                        break;
+
+                    case QuestionTypeEnum::ESSAY->value:
+                        $text_answer = fake()->sentence(3);
+                        break;
+
+                    case QuestionTypeEnum::MATCHING->value:
+                        // Ambil pasangan domain dan kodomain
+                        $domains = $question->answer()
+                            ->where('metadata->type', 'domain')
+                            ->pluck('id')
+                            ->toArray();
+
+                        $kodomains = $question->answer()
+                            ->where('metadata->type', 'kodomain')
+                            ->pluck('id')
+                            ->toArray();
+
+                        // Simulasikan jawaban siswa
+                        $studentMatchingAnswer = collect($domains)->mapWithKeys(function ($domain) use ($kodomains) {
+                            return [
+                                $domain => random_int(0, 1) ? $kodomains[array_rand($kodomains)] : null, // Benar atau salah
+                            ];
+                        });
+                        
+                        $matching_answer = $studentMatchingAnswer;
+                        break;
+
+                    case QuestionTypeEnum::ORDERING->value:
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+
                 StudentAnswer::create([
                     'exam_id' => $exam->id,
                     'question_bank_id' => $exam->question_bank_id,
                     'question_id' => $question->id,
                     'student_id' => $student->id,
-                    'answer_id' => $question->question_type === QuestionTypeEnum::MULTIPLE_CHOICE->value || QuestionTypeEnum::TRUE_FALSE
-                        ? $question->answer->random()->id
-                        : null,
-                    'answer_ids' => $question->question_type === QuestionTypeEnum::MULTIPLE_ANSWER->value
-                        ? $question->answer->random(2)->pluck('id')
-                        : null,
-                    'text_answer' => $question->question_type === QuestionTypeEnum::ESSAY->value ? 'Example essay answer' : null,
-                    'matching_answer' => $question->question_type === QuestionTypeEnum::MATCHING->value
-                        ? [['key' => 'A', 'value' => '1'], ['key' => 'B', 'value' => '2']]
-                        : null,
-                    'ordering_answer' => $question->question_type === QuestionTypeEnum::ORDERING->value
-                        ? [1, 3, 2, 4]
-                        : null,
+                    'answer_id' => $answer_id,
+                    'answer_ids' => $answer_ids,
+                    'text_answer' => $text_answer,
+                    'matching_answer' => $matching_answer,
+                    'ordering_answer' => $ordering_answer,
                     'is_correct' => null, // Evaluasi setelah submit
                     'score' => 0,
                 ]);
