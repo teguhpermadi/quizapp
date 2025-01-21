@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('student_answers', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('attempt_id')->constrained('student_attempts')->cascadeOnDelete();
+            $table->foreignUlid('attempt_id')->constrained('exam_attempts')->cascadeOnDelete();
             $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete();
             $table->foreignUlid('question_bank_id')->constrained('question_banks')->cascadeOnDelete();
             $table->foreignUlid('question_id')->constrained('questions')->cascadeOnDelete();

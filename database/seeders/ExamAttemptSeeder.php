@@ -5,13 +5,13 @@ namespace Database\Seeders;
 use App\Enums\QuestionTypeEnum;
 use App\Models\Exam;
 use App\Models\StudentAnswer;
-use App\Models\StudentAttempt;
+use App\Models\ExamAttempt;
 use App\Models\StudentExamAttempt;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class StudentAttemptSeeder extends Seeder
+class ExamAttemptSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,7 +25,7 @@ class StudentAttemptSeeder extends Seeder
         foreach ($exams as $exam) {
             // ambil setiap siswa
             foreach ($students as $student) {
-                $attempt = StudentAttempt::create([
+                $attempt = ExamAttempt::create([
                     'user_id' => $student->id,
                     'exam_id' => $exam->id,
                     'attempt_number' => 1,
@@ -34,7 +34,7 @@ class StudentAttemptSeeder extends Seeder
                 ]);
 
                 // simulasi proses mengerjakan exam
-                $this->studentAttempt($attempt, $exam, $student);
+                $this->ExamAttempt($attempt, $exam, $student);
 
                 // update attempt
                 $attempt->update([
@@ -45,7 +45,7 @@ class StudentAttemptSeeder extends Seeder
         }
     }
 
-    private function studentAttempt($attempt, $exam, $student)
+    private function ExamAttempt($attempt, $exam, $student)
     {
         $questions = $exam->questionBank->question;
         

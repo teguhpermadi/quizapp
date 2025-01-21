@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StudentAttempt extends Model
+class ExamAttempt extends Model
 {
     /** @use HasFactory<\Database\Factories\StudentExamAttemptFactory> */
     use HasFactory;

@@ -43,7 +43,7 @@ class StudentAnswer extends Model
 
     public function attempt()
     {
-        return $this->belongsTo(StudentAttempt::class, 'attempt_id');
+        return $this->belongsTo(ExamAttempt::class, 'attempt_id');
     }
 
     public function exam()

@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             ExamSeeder::class,
             ExamTokenSeeder::class,
             // StudentAnswerSeeder::class,
-            StudentAttemptSeeder::class,
+            ExamAttemptSeeder::class,
         ]);
     }
 }

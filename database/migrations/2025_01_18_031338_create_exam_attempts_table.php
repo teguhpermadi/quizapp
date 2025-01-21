@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('student_attempts', function (Blueprint $table) {
+        Schema::create('exam_attempts', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete(); // Relasi ke tabel pengguna (siswa)
             $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete(); // Relasi ke tabel Exams
