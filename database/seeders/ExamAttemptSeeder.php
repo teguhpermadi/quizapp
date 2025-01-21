@@ -6,6 +6,7 @@ use App\Enums\QuestionTypeEnum;
 use App\Models\Exam;
 use App\Models\StudentAnswer;
 use App\Models\ExamAttempt;
+use App\Models\Student;
 use App\Models\StudentExamAttempt;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -19,14 +20,14 @@ class ExamAttemptSeeder extends Seeder
     public function run(): void
     {
         $exams = Exam::get();
-        $students = User::role('student')->get();
+        $students = Student::get();
 
         // ambil setiap exam
         foreach ($exams as $exam) {
             // ambil setiap siswa
             foreach ($students as $student) {
                 $attempt = ExamAttempt::create([
-                    'user_id' => $student->id,
+                    'student_id' => $student->id,
                     'exam_id' => $exam->id,
                     'attempt_number' => 1,
                     'started_at' => now(),
@@ -108,8 +109,8 @@ class ExamAttemptSeeder extends Seeder
             }
 
             StudentAnswer::create([
-                'attempt_id' => $attempt->id,
                 'exam_id' => $exam->id,
+                'exam_attempt_id' => $attempt->id,
                 'question_bank_id' => $exam->question_bank_id,
                 'question_id' => $question->id,
                 'student_id' => $student->id,

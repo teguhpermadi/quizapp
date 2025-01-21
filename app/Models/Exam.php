@@ -31,7 +31,7 @@ class Exam extends Model
         return $this->belongsTo(QuestionBank::class);
     }
 
-    public function studentAnswers()
+    public function studentAnswer()
     {
         return $this->hasMany(StudentAnswer::class);
     }

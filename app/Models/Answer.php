@@ -33,7 +33,7 @@ class Answer extends Model
         return $this->belongsTo(Question::class);
     }
 
-    public function studentAnswers()
+    public function studentAnswer()
     {
         return $this->hasMany(StudentAnswer::class);
     }

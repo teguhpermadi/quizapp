@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('exam_attempts', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete(); // Relasi ke tabel pengguna (siswa)
+            $table->foreignUlid('student_id')->constrained()->cascadeOnDelete(); // Relasi ke tabel pengguna (siswa)
             $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete(); // Relasi ke tabel Exams
             $table->integer('attempt_number')->default(1); // Nomor percobaan
             $table->timestamp('started_at')->nullable(); // Waktu mulai ujian

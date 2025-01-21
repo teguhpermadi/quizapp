@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\QuestionTypeEnum;
 use App\Models\Exam;
+use App\Models\Student;
 use App\Models\StudentAnswer;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -17,7 +18,7 @@ class StudentAnswerSeeder extends Seeder
     public function run(): void
     {
         $exam = Exam::first();
-        $students = User::role('student')->get();
+        $students = Student::get();
 
         $questions = $exam->questionBank->question;
 
@@ -85,6 +86,7 @@ class StudentAnswerSeeder extends Seeder
                 StudentAnswer::create([
                     'exam_id' => $exam->id,
                     'question_bank_id' => $exam->question_bank_id,
+                    // 'exam_attempt_id' => 
                     'question_id' => $question->id,
                     'student_id' => $student->id,
                     'answer_id' => $answer_id,

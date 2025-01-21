@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('student_answers', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('attempt_id')->constrained('exam_attempts')->cascadeOnDelete();
-            $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete();
-            $table->foreignUlid('question_bank_id')->constrained('question_banks')->cascadeOnDelete();
-            $table->foreignUlid('question_id')->constrained('questions')->cascadeOnDelete();
+            $table->foreignUlid('exam_attempt_id')->constrained('exam_attempts')->cascadeOnDelete();
+            $table->foreignUlid('exam_id')->constrained()->cascadeOnDelete();
+            $table->foreignUlid('question_bank_id')->constrained()->cascadeOnDelete();
+            $table->foreignUlid('question_id')->constrained()->cascadeOnDelete();
             $table->foreignUlid('student_id')->constrained()->cascadeOnDelete(); // Relasi ke tabel student
-            $table->foreignUlid('answer_id')->nullable()->constrained('answers')->nullOnDelete(); // untuk multiple choice, true-false
+            $table->foreignUlid('answer_id')->nullable()->constrained()->nullOnDelete(); // untuk multiple choice, true-false
             $table->json('answer_ids')->nullable();
             $table->text('text_answer')->nullable(); // untuk essay atau short answer
             $table->json('matching_answer')->nullable(); // Untuk matching
