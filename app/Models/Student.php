@@ -16,4 +16,9 @@ class Student extends Model
         'name',
         'gender',
     ];
+
+    public function userable()
+    {
+        return $this->morphOne(Userable::class, 'userable')->with('userable');
+    }
 }

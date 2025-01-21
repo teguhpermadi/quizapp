@@ -18,7 +18,7 @@ class StudentFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'gender' => fake()->randomElement('male', 'female'),
+            'gender' => fake()->randomElement(['male', 'female']),
         ];
     }
 }
