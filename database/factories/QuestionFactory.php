@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\QuestionTypeEnum;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -30,7 +31,7 @@ class QuestionFactory extends Factory
             'tag' => fake()->word(),
             'timer' => fake()->numberBetween(1000, 3000),
             'level' => fake()->randomElement(['easy', 'medium', 'hard']),
-            'user_id' => User::role('teacher')->get()->random()->id,
+            'teacher_id' => Teacher::get()->random()->id,
         ];
     }
 }

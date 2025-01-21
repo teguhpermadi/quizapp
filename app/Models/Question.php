@@ -26,9 +26,9 @@ class Question extends Model
         'user_id',
     ];
 
-    public function user()
+    public function teacher()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Teacher::class);
     }
 
     public function answer()

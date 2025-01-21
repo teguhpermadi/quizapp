@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tag')->nullable();
             $table->time('timer')->default(0);
             $table->string('level')->nullable();
-            $table->foreignUlid('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignUlid('teacher_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
