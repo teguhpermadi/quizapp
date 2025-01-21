@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\CalculateScoreJob;
 use Illuminate\Console\Command;
 use App\Jobs\CorrectExamJob;
 

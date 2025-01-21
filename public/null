@@ -1,45 +1,10 @@
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable.user')->get()
-App\Models\Teacher::with('userable.user')->get()
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable')->get()
-App\Models\Teacher::with('userable')->get()
-Question::get()
-StudentAnswer::get()
-Exam::get()
-Exam::with('questionBank')->get()
-Exam::with('questionBank.question')->get()
-Exam::with('questionBank.question.answer')->get()
-ExamToken::get()
-StudentAnswer::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::get()
-StudentAnswer::get()
-StudentAnswer::get()
-Question::get()
-Exam::get()
-Exam::with('questionBank')->get()
-Exam::with('questionBank.question')->get()
-ExamTokent::get()
-ExamToken::get()
-ExamAttempt::get()
-ExamAttempt::get()
-ExamAttempt::with('exam')->get()
-ExamAttempt::with('exam.studentAnswer')->get()
-ExamAttempt::with('exam.studentAnswer')->get()
-ExamAttempt::with('exam.studentAnswer')->get()
-ExamAttempt::with('exam.studentAnswer')->get()
+$examAttempts = ExamAttempt::get();
+$examAttempts = ExamAttempt::get();
+$examAttempts = ExamAttempt::groupBy('student_id')->get();
+$examAttempts = ExamAttempt::get();
+$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
+$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
+$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
+$examAttempts = ExamAttempt::get();
+$examAttempts = ExamAttempt::count();
+$examAttempts = ExamAttempt::get();

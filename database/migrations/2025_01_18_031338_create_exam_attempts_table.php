@@ -19,6 +19,8 @@ return new class extends Migration
             $table->timestamp('started_at')->nullable(); // Waktu mulai ujian
             $table->timestamp('ended_at')->nullable(); // Waktu selesai ujian
             $table->boolean('is_completed')->default(false); // Status apakah ujian selesai
+            $table->boolean('is_correction')->default(false);
+            $table->float('score')->default(0);
             $table->timestamps();
         });
     }

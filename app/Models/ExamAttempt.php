@@ -19,6 +19,8 @@ class ExamAttempt extends Model
         'started_at',
         'ended_at',
         'is_completed',
+        'is_correction',
+        'score',
     ];
 
     /**
@@ -54,6 +56,6 @@ class ExamAttempt extends Model
 
     public function studentAnswer()
     {
-        return $this->hasMany(StudentAnswer::class, 'attempt_id');
+        return $this->hasMany(StudentAnswer::class, 'exam_attempt_id');
     }
 }
