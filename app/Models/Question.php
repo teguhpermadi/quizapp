@@ -23,7 +23,7 @@ class Question extends Model
         'tag',
         'timer',
         'level',
-        'user_id',
+        'teacher_id',
     ];
 
     public function teacher()

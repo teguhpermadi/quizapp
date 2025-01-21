@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Exam;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,7 +20,7 @@ class ExamAttemptFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::role('student')->get()->random()->id,
+            'student_id' => Student::get()->random()->id,
             'exam_id' => Exam::get()->random()->id,
             'attempt_number' => null,
             'started_at' => now(),

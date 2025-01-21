@@ -15,7 +15,7 @@ class QuestionBank extends Model
     use HasUlids;
 
     protected $fillable = [
-        'user_id',
+        'teacher_id',
         'title',
         'description',
         'image',

@@ -13,7 +13,7 @@ class ExamAttempt extends Model
     use HasUlids;
 
     protected $fillable = [
-        'user_id',
+        'student_id',
         'exam_id',
         'attempt_number',
         'started_at',
@@ -41,7 +41,7 @@ class ExamAttempt extends Model
      */
     public function student()
     {
-        return $this->belongsTo(User::class, 'student_id');
+        return $this->belongsTo(Student::class);
     }
 
     /**
