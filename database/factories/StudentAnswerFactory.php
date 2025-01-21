@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Exam;
 use App\Models\Question;
 use App\Models\QuestionBank;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -26,7 +27,7 @@ class StudentAnswerFactory extends Factory
             'question_bank_id' => QuestionBank::factory(),
             'question_id' => Question::factory(),
             'answer_id' => Answer::factory(),
-            'student_id' => User::factory(),
+            'student_id' => Student::factory(),
             'text_answer' => $this->faker->paragraph(),
             'matching_answer' => null,
             'ordering_answer' => null,

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignUlid('exam_id')->constrained('exams')->cascadeOnDelete();
             $table->foreignUlid('question_bank_id')->constrained('question_banks')->cascadeOnDelete();
             $table->foreignUlid('question_id')->constrained('questions')->cascadeOnDelete();
-            $table->foreignUlid('student_id')->constrained('users')->cascadeOnDelete(); // Relasi ke tabel users
+            $table->foreignUlid('student_id')->constrained()->cascadeOnDelete(); // Relasi ke tabel student
             $table->foreignUlid('answer_id')->nullable()->constrained('answers')->nullOnDelete(); // untuk multiple choice, true-false
             $table->json('answer_ids')->nullable();
             $table->text('text_answer')->nullable(); // untuk essay atau short answer
