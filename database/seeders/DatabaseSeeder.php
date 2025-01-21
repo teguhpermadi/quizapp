@@ -18,15 +18,15 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
-            QuestionSeeder::class,
+            // QuestionSeeder::class,
             // AnswerSeeder::class,
             // ParagraphSeeder::class,
             // QuestionBankSeeder::class,
             // QuestionBankQuestionSeeder::class,
-            // ExamSeeder::class,
-            // ExamTokenSeeder::class,
-            // StudentAnswerSeeder::class,
-            // ExamAttemptSeeder::class,
+            ExamSeeder::class,
+            ExamTokenSeeder::class,
+            StudentAnswerSeeder::class,
+            ExamAttemptSeeder::class,
         ]);
     }
 }

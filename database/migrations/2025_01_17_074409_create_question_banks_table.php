@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('question_banks', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignUlid('teacher_id')->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
