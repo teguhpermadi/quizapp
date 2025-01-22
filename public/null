@@ -1,10 +1,10 @@
-$examAttempts = ExamAttempt::get();
-$examAttempts = ExamAttempt::get();
-$examAttempts = ExamAttempt::groupBy('student_id')->get();
-$examAttempts = ExamAttempt::get();
-$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
-$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
-$examAttempts = ExamAttempt::where("student_id", "01jj3jc5r2nvqz64nhvf0mrbfb")->get();
-$examAttempts = ExamAttempt::get();
-$examAttempts = ExamAttempt::count();
-$examAttempts = ExamAttempt::get();
+Exam::get()
+Exam::with('examAttempt')->get()
+Exam::with('examAttempt')->get()
+Exam::with('examAttempt', 'questionBank')->get()
+Exam::with('examAttempt', 'questionBank.question')->get()
+Exam::with('examAttempt')->get()
+Exam::with('examAttempt.studentAnswer')->get()
+Exam::with('examAttempt')->get()
+Exam::with('examAttempt')->get()
+Exam::with('examAttempt.studentAnswer')->get()

@@ -30,6 +30,7 @@ class CorrectExamJob implements ShouldQueue
 
         // Ambil semua jawaban siswa untuk ujian ini
         $studentAnswers = StudentAnswer::where('exam_id', $this->examId)->get();
+        Log::info("data: {$studentAnswers}");
 
         foreach ($studentAnswers as $studentAnswer) {
             $question = $studentAnswer->question;
