@@ -5,9 +5,12 @@ namespace Database\Seeders;
 use App\Enums\QuestionTypeEnum;
 use App\Models\Answer;
 use App\Models\Exam;
+use App\Models\ExamGrade;
+use App\Models\Grade;
 use App\Models\Paragraph;
 use App\Models\Question;
 use App\Models\QuestionBank;
+use App\Models\Student;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -119,12 +122,16 @@ class ExamSeeder extends Seeder
                     ->shortAnswer()
                     ->count(3))
                 ->count(5))
-            
-                // create
+
+            // create
             ->create();
 
         $exam = Exam::factory(1)->state([
             'question_bank_id' => $questionBank->id,
-        ])->create();
+        ])
+            ->has(Grade::factory()
+                ->has(Student::factory()->count(5))
+                ->count(2))
+            ->create();
     }
 }
