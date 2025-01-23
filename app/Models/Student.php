@@ -21,4 +21,9 @@ class Student extends Model
     {
         return $this->morphOne(Userable::class, 'userable')->with('userable');
     }
+
+    public function grade()
+    {
+        return $this->belongsToMany(Grade::class, 'student_grades');
+    }
 }

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             // UserSeeder::class,
             TeacherSeeder::class,
             StudentSeeder::class,
+            GradeSeeder::class,
             // QuestionSeeder::class,
             // AnswerSeeder::class,
             // ParagraphSeeder::class,
